@@ -28,6 +28,11 @@ public class AnimeService {
         return animeRepository.findAll(pageable);
     }
 
+    public List<Anime> FullList() {
+        return animeRepository.findAll();
+    }
+
+
     public List<AnimePostRequestBody> allNames() {
         return animeRepository.findAllNames();
     }
@@ -67,6 +72,8 @@ public class AnimeService {
 
 
     }
+
+
 }
 
 

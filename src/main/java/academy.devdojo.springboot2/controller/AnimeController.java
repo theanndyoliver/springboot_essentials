@@ -33,6 +33,13 @@ public class AnimeController {
      return ResponseEntity.ok(animeService.listAll(pageable));
  }
 
+
+    @GetMapping(path = "/all")
+    public ResponseEntity<List<Anime>> FullList() {
+        log.info(dateutil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
+        return ResponseEntity.ok(animeService.FullList());
+    }
+
     @GetMapping(path = "/names")
     public ResponseEntity<List<AnimePostRequestBody>> listx() {
         log.info(dateutil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
