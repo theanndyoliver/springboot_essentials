@@ -1,18 +1,23 @@
 package academy.devdojo.springboot2.repository;
 
 import academy.devdojo.springboot2.domain.Anime;
+import jakarta.validation.ConstraintViolationException;
+
 import lombok.extern.log4j.Log4j2;
 import org.assertj.core.api.Assertions;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
 
 import java.util.List;
 import java.util.Optional;
 
-@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
+
+//@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
+//@ActiveProfiles("test")
 @DataJpaTest
 @DisplayName("Tests for Anime Repository")
 @Log4j2
@@ -58,13 +63,13 @@ class AnimeRepositoryTest {
     }
 
 
-
     @Test
     @DisplayName("Delete removes Anime when sucessful")
     void Delete_RemoveAnime_WhenSucessful() {
         Anime animeToBeSaved = createAnime();
 
         Anime animeSaved = animeRepository.save(animeToBeSaved);
+
 
         this.animeRepository.delete(animeSaved);
 
@@ -104,10 +109,38 @@ class AnimeRepositoryTest {
 
     }
 
+
+    @Test
+    @DisplayName("Save throw ConstraintViolationException when name is empty")
+    void save_throwConstraintViolationException_WhenNameIsEmpty() {
+        Anime anime = new Anime();
+
+
+        Assertions.assertThatThrownBy(()->this.animeRepository.saveAndFlush(anime)).isInstanceOf(ConstraintViolationException.class);
+
+        //Assertions.assertThatExceptionOfType(ConstraintViolationException.class)
+                //.isThrownBy(() -> this.animeRepository.saveAndFlush(anime))
+                //.withMessageContaining("The anime name cannot be empty");
+
+    }
+
+
+
+
     private Anime createAnime() {
         return Anime.builder().name("Hajime no Ippo").build();
     }
 
 
-
 }
+
+
+
+
+
+
+
+
+
+
+

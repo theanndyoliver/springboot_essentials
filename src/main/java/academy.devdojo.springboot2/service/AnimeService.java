@@ -3,6 +3,7 @@ package academy.devdojo.springboot2.service;
 import academy.devdojo.springboot2.domain.Anime;
 import academy.devdojo.springboot2.repository.AnimeRepository;
 import academy.devdojo.springboot2.exception.BadRequestException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import academy.devdojo.springboot2.mapper.AnimeMapper;
 import org.springframework.data.domain.Page;
@@ -49,7 +50,7 @@ public class AnimeService {
     }
 
     @Transactional
-    public Anime save(AnimePostRequestBody animePostRequestBody) {
+    public Anime save( AnimePostRequestBody animePostRequestBody) {
 
         return animeRepository.save(AnimeMapper.INSTANCE.toAnime(animePostRequestBody));
        // return animeRepository.save(Anime.builder().name(animePostRequestBody.getName()).build());
