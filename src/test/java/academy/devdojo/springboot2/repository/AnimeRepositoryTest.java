@@ -116,11 +116,10 @@ class AnimeRepositoryTest {
         Anime anime = new Anime();
 
 
-        Assertions.assertThatThrownBy(()->this.animeRepository.saveAndFlush(anime)).isInstanceOf(ConstraintViolationException.class);
+       // Assertions.assertThatThrownBy(()->this.animeRepository.saveAndFlush(anime)).isInstanceOf(ConstraintViolationException.class);
 
-        //Assertions.assertThatExceptionOfType(ConstraintViolationException.class)
-                //.isThrownBy(() -> this.animeRepository.saveAndFlush(anime))
-                //.withMessageContaining("The anime name cannot be empty");
+        Assertions.assertThatExceptionOfType(ConstraintViolationException.class)
+                .isThrownBy(() -> this.animeRepository.saveAndFlush(anime));
 
     }
 
