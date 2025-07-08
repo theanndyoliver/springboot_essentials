@@ -12,6 +12,7 @@ import academy.devdojo.springboot2.requests.AnimePostRequestBody;
 import academy.devdojo.springboot2.requests.AnimePutRequestBody;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.client.RestTemplate;
 
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class AnimeService {
     //Regras de Negócio//
 
     private final AnimeRepository animeRepository;
+
 
     public Page<Anime> listAll(Pageable pageable) {
         return animeRepository.findAll(pageable);

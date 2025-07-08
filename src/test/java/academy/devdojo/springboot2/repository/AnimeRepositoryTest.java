@@ -15,6 +15,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import java.util.List;
 import java.util.Optional;
 
+import static academy.devdojo.springboot2.util.AnimeCreator.createAnimeToBeSaveD;
+
 
 //@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 //@ActiveProfiles("test")
@@ -31,7 +33,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Save Persists Anime when sucessful")
     void save_PersistAnime_WhenSucessful() {
-        Anime animeToBeSaved = createAnime();
+        Anime animeToBeSaved = createAnimeToBeSaveD();
 
         Anime animeSaved = this.animeRepository.save(animeToBeSaved);
 
@@ -46,7 +48,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Save Updates Anime when sucessful")
     void save_UpdatesAnime_WhenSucessful() {
-        Anime animeToBeSaved = createAnime();
+        Anime animeToBeSaved = createAnimeToBeSaveD();
 
         Anime animeSaved = this.animeRepository.save(animeToBeSaved);
 
@@ -66,7 +68,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Delete removes Anime when sucessful")
     void Delete_RemoveAnime_WhenSucessful() {
-        Anime animeToBeSaved = createAnime();
+        Anime animeToBeSaved = createAnimeToBeSaveD();
 
         Anime animeSaved = animeRepository.save(animeToBeSaved);
 
@@ -83,7 +85,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("FindByName returns list of Anime when sucessful")
     void FindByName_ReturnsListOfAnime_WhenSucessful() {
-        Anime animeToBeSaved = createAnime();
+        Anime animeToBeSaved = createAnimeToBeSaveD();
 
         Anime animeSaved = animeRepository.save(animeToBeSaved);
 
@@ -125,10 +127,6 @@ class AnimeRepositoryTest {
 
 
 
-
-    private Anime createAnime() {
-        return Anime.builder().name("Hajime no Ippo").build();
-    }
 
 
 }

@@ -26,25 +26,21 @@ import java.util.List;
 public class AnimeController {
 
     private final AnimeService animeService;
-    private final DateUtil dateutil;
 
 
   @GetMapping
   public ResponseEntity<Page<Anime>> list(Pageable pageable) {
-     log.info(dateutil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
      return ResponseEntity.ok(animeService.listAll(pageable));
  }
 
 
     @GetMapping(path = "/all")
     public ResponseEntity<List<Anime>> FullList() {
-        log.info(dateutil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
         return ResponseEntity.ok(animeService.FullList());
     }
 
     @GetMapping(path = "/names")
     public ResponseEntity<List<AnimePostRequestBody>> listx() {
-        log.info(dateutil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
         return ResponseEntity.ok(animeService.allNames());
     }
 
