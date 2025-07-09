@@ -186,7 +186,6 @@ class AnimeServiceTest {
 
         Assertions.assertThatCode(() -> animeService.deleteById(id)).doesNotThrowAnyException();
 
-
     }
 
     @Test
