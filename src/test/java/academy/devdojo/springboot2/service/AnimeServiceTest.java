@@ -53,7 +53,7 @@ class AnimeServiceTest {
 
         BDDMockito.when(animeRepositoryMock.findByName(ArgumentMatchers.anyString())).thenReturn(List.of(AnimeCreator.createValidAnime()));
 
-        BDDMockito.doNothing().when(animeRepositoryMock).deleteById(ArgumentMatchers.anyLong());
+        BDDMockito.doNothing().when(animeRepositoryMock).delete(ArgumentMatchers.any(Anime.class));
 
 
     }
@@ -90,6 +90,7 @@ class AnimeServiceTest {
         List<Anime> animeList = animeService.FullList();
 
         Assertions.assertThat(animeList).isNotNull().isNotEmpty();
+
         Assertions.assertThat(animeList.get(0).getName()).isEqualTo(name);
 
     }
