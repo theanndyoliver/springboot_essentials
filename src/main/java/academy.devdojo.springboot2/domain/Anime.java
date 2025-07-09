@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class Anime  {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty(message = "The name anime cannot be empty")

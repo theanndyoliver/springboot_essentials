@@ -1,6 +1,7 @@
 package academy.devdojo.springboot2.repository;
 
 import academy.devdojo.springboot2.domain.Anime;
+import academy.devdojo.springboot2.util.AnimeCreator;
 import jakarta.validation.ConstraintViolationException;
 
 import lombok.extern.log4j.Log4j2;
@@ -33,7 +34,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Save Persists Anime when sucessful")
     void save_PersistAnime_WhenSucessful() {
-        Anime animeToBeSaved = createAnimeToBeSaveD();
+        Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaveD();
 
         Anime animeSaved = this.animeRepository.save(animeToBeSaved);
 
@@ -48,7 +49,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Save Updates Anime when sucessful")
     void save_UpdatesAnime_WhenSucessful() {
-        Anime animeToBeSaved = createAnimeToBeSaveD();
+        Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaveD();
 
         Anime animeSaved = this.animeRepository.save(animeToBeSaved);
 
@@ -68,7 +69,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Delete removes Anime when sucessful")
     void Delete_RemoveAnime_WhenSucessful() {
-        Anime animeToBeSaved = createAnimeToBeSaveD();
+        Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaveD();
 
         Anime animeSaved = animeRepository.save(animeToBeSaved);
 
@@ -85,7 +86,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("FindByName returns list of Anime when sucessful")
     void FindByName_ReturnsListOfAnime_WhenSucessful() {
-        Anime animeToBeSaved = createAnimeToBeSaveD();
+        Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaveD();
 
         Anime animeSaved = animeRepository.save(animeToBeSaved);
 

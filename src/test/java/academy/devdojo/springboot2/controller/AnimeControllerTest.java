@@ -142,9 +142,6 @@ class AnimeControllerTest {
     @DisplayName("SaveAnime returns anime when Sucessful")
     void SaveAnime_ReturnsAnime_WhenSucessful() {
 
-        BDDMockito.when(animeServiceMock.findByName(ArgumentMatchers.anyString()))
-                .thenReturn(Collections.emptyList());
-
         AnimePostRequestBody animePostRequestBody = AnimeCreatorPostRequestBody.createAnimePostRequestBody();
 
         Anime savedAnime = animeController.save(animePostRequestBody).getBody();
