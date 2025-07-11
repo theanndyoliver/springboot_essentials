@@ -1,0 +1,17 @@
+C:\Users\adm-l\Downloads\springboot_essentials2\src\main\java\academy.devdojo.springboot2\requests\AnimePostRequestBody.java
+C:\Users\adm-l\Downloads\springboot_essentials2\src\main\java\academy.devdojo.springboot2\requests\AnimePutRequestBody.java
+C:\Users\adm-l\Downloads\springboot_essentials2\src\main\java\academy.devdojo.springboot2\exception\BadRequestException.java
+C:\Users\adm-l\Downloads\springboot_essentials2\src\main\java\academy.devdojo.springboot2\repository\AnimeRepository.java
+C:\Users\adm-l\Downloads\springboot_essentials2\src\main\java\academy.devdojo.springboot2\exception\ValidationExceptioDetails.java
+C:\Users\adm-l\Downloads\springboot_essentials2\src\main\java\academy.devdojo.springboot2\client\SpringClient.java
+C:\Users\adm-l\Downloads\springboot_essentials2\src\main\java\academy.devdojo.springboot2\service\AnimeService.java
+C:\Users\adm-l\Downloads\springboot_essentials2\src\main\java\academy.devdojo.springboot2\handler\RestExceptionHandler.java
+C:\Users\adm-l\Downloads\springboot_essentials2\src\main\java\academy.devdojo.springboot2\configurer\DevDojoWebMvcConfigurer.java
+C:\Users\adm-l\Downloads\springboot_essentials2\src\main\java\academy.devdojo.springboot2\controller\AnimeController.java
+C:\Users\adm-l\Downloads\springboot_essentials2\src\main\java\academy.devdojo.springboot2\mapper\AnimeMapper.java
+C:\Users\adm-l\Downloads\springboot_essentials2\src\main\java\academy.devdojo.springboot2\SpringbootEssentials2Application.java
+C:\Users\adm-l\Downloads\springboot_essentials2\src\main\java\academy.devdojo.springboot2\exception\BadRequestExceptionDetails.java
+C:\Users\adm-l\Downloads\springboot_essentials2\src\main\java\academy.devdojo.springboot2\util\DateUtil.java
+C:\Users\adm-l\Downloads\springboot_essentials2\src\main\java\academy.devdojo.springboot2\domain\Anime.java
+C:\Users\adm-l\Downloads\springboot_essentials2\src\main\java\academy.devdojo.springboot2\exception\ExceptionDetails.java
+C:\Users\adm-l\Downloads\springboot_essentials2\src\main\java\academy.devdojo.springboot2\wrapper\PageableResponse.java
