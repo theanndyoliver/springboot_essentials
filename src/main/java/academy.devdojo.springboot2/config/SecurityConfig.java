@@ -2,6 +2,8 @@ package academy.devdojo.springboot2.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
@@ -17,6 +19,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 
 @Configuration
+@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig  {
 
     @Bean
@@ -38,14 +41,14 @@ public class SecurityConfig  {
         UserDetails user = User.builder()
                 .username("admin")
                 .password(encoder.encode("1234"))
-                .roles("USER", "ADMIN")
+                .roles("USER","ADMIN")
                 .build();
         return new InMemoryUserDetailsManager(user);
     }
 
 
 
-    }
+}
 
 
 
