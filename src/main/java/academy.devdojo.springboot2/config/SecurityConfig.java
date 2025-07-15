@@ -1,11 +1,19 @@
 package academy.devdojo.springboot2.config;
 
+import academy.devdojo.springboot2.service.DomainUsersDetailsService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.AuthenticationUserDetailsService;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -16,7 +24,11 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableMethodSecurity(prePostEnabled = true)
-public class SecurityConfig  {
+@RequiredArgsConstructor
+@Log4j2
+public class SecurityConfig {
+
+    private final DomainUsersDetailsService domainUsersDetailsService;
 
     /**
      * BasicAuthenticationFilter
@@ -25,6 +37,7 @@ public class SecurityConfig  {
      * DefaultLogoutPageGeneratingFilter
      * FilterSecurityInterceptor
      * Authentication -> Authorization
+     *
      * @param http
      * @throws Exception
      */
@@ -44,23 +57,34 @@ public class SecurityConfig  {
         return new BCryptPasswordEncoder();
     }
 
+    // @Bean
+    //public InMemoryUserDetailsManager userDetailsService(PasswordEncoder encoder) {
+
+    //UserDetails user = User.builder()
+    // .username("admin")
+    //.password(encoder.encode("1234"))
+    // .roles("ADMIN")
+    //.build();
+
+    //UserDetails user2 = User.builder()
+    //.username("user")
+    //.password(encoder.encode("1234"))
+    // .roles("USER")
+    //.build();
+
+    // return new InMemoryUserDetailsManager(user,user2);
+
+
     @Bean
-    public InMemoryUserDetailsManager userDetailsService(PasswordEncoder encoder) {
+    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+        log.info("Password Encode {}", passwordEncoder().encode("1234"));
+        AuthenticationManagerBuilder builder = http.getSharedObject(AuthenticationManagerBuilder.class);
+        builder.userDetailsService(domainUsersDetailsService)
+                .passwordEncoder(passwordEncoder());
 
-        UserDetails user = User.builder()
-                .username("admin")
-                .password(encoder.encode("1234"))
-                .roles("ADMIN")
-                .build();
-
-        UserDetails user2 = User.builder()
-                .username("user")
-                .password(encoder.encode("1234"))
-                .roles("USER")
-                .build();
-
-        return new InMemoryUserDetailsManager(user,user2);
+        return builder.build();
     }
+
 
 
 
