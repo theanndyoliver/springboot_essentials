@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -18,6 +19,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AndRequestMatcher;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -46,9 +49,12 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csfr -> csfr.disable())
                 //.csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
-                .authorizeHttpRequests(authz -> authz.anyRequest().authenticated())
+                .authorizeHttpRequests(authz -> authz.
+                        requestMatchers("animes/admin/**").hasRole("ADMIN")
+                        .requestMatchers("animes/**").hasRole("USER")
+                        .anyRequest().authenticated())
                 .formLogin(withDefaults())
-                .httpBasic(withDefaults());
+               .httpBasic(withDefaults());
         return http.build();
     }
 
@@ -57,22 +63,23 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    // @Bean
+   // @Bean
     //public InMemoryUserDetailsManager userDetailsService(PasswordEncoder encoder) {
 
-    //UserDetails user = User.builder()
-    // .username("admin")
-    //.password(encoder.encode("1234"))
-    // .roles("ADMIN")
-    //.build();
+        //UserDetails user = User.builder()
+              //  .username("admin")
+               // .password(encoder.encode("1234"))
+              //  .roles("ADMIN")
+               // .build();
 
-    //UserDetails user2 = User.builder()
-    //.username("user")
-    //.password(encoder.encode("1234"))
-    // .roles("USER")
-    //.build();
+       // UserDetails user2 = User.builder()
+              //  .username("user")
+              //  .password(encoder.encode("1234"))
+              //  .roles("USER")
+               // .build();
 
-    // return new InMemoryUserDetailsManager(user,user2);
+      //  return new InMemoryUserDetailsManager(user, user2);
+   // }
 
 
     @Bean
@@ -84,8 +91,6 @@ public class SecurityConfig {
 
         return builder.build();
     }
-
-
 
 
 }
