@@ -24,7 +24,7 @@ import java.util.List;
 
 @RestController
 @Log4j2
-@RequestMapping("animes")
+@RequestMapping("/animes")
 @RequiredArgsConstructor
 public class AnimeController {
 
