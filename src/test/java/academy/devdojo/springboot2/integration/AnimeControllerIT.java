@@ -41,7 +41,7 @@ public class AnimeControllerIT {
 
     @Autowired
     @Qualifier(value = "testRestTemplateRoleAdminCreator")
-    private TestRestTemplate testRestTemplateAdminUser;
+    private TestRestTemplate testRestTemplateRoleAdmin;
 
     @Autowired
     private AnimeRepository animeRepository;
@@ -206,7 +206,7 @@ public class AnimeControllerIT {
 
         domainUsersRepository.save(ADMIN2);
 
-        ResponseEntity<Anime> animeResponseEntity = testRestTemplateAdminUser.postForEntity
+        ResponseEntity<Anime> animeResponseEntity = testRestTemplateRoleAdmin.postForEntity
                 ("/animes/admin/",animePostRequestBody,Anime.class);
 
 
@@ -250,7 +250,7 @@ public class AnimeControllerIT {
 
         SavedAnime.setName("KLB");
 
-        ResponseEntity<Void> animeResponseEntity = testRestTemplateAdminUser.
+        ResponseEntity<Void> animeResponseEntity = testRestTemplateRoleAdmin.
                 exchange("/animes/admin/remove/{id}",HttpMethod.DELETE,null,Void.class,SavedAnime.getId());
 
 
