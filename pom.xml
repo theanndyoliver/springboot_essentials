@@ -19,6 +19,11 @@
         <java.version>21</java.version>
         <org.mapstruct.version>1.6.3</org.mapstruct.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <docker.distroless.image>gcr.io/distroless/java21-debian12:nonroot</docker.distroless.image>
+        <docker.repo.url>registry.hub.docker.com/anndyoliver1</docker.repo.url>
+        <docker.repo.project>springboot2-essentials</docker.repo.project>
+        <docker.image.name>${docker.repo.url}/${docker.repo.project}</docker.image.name>
+        <jib-maven-plugin.version>3.4.6</jib-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -116,15 +121,42 @@
                                 <include>**/**IT.*</include>
                             </includes>
                         </configuration>
+
                     </plugin>
-                </plugins>
+                   </plugins>
+
             </build>
+
+
 
         </profile>
     </profiles>
 
     <build>
+
         <plugins>
+            <plugin>
+                    <groupId>com.google.cloud.tools</groupId>
+                    <artifactId>jib-maven-plugin</artifactId>
+                    <version>${jib-maven-plugin.version}</version>
+                    <configuration>
+                        <from>
+                            <image>${docker.distroless.image}</image>
+                        </from>
+                        <to>
+                            <image>${docker.image.name}</image>
+                            <tags>
+                                <tag>${project.version}</tag>
+                            </tags>
+                        </to>
+                        <container>
+                            <mainClass>academy.devdojo.springboot2.SpringbootEssentials2Application</mainClass>
+                            <ports>
+                                <port>8080</port>
+                            </ports>
+                        </container>
+                    </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -158,5 +190,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>

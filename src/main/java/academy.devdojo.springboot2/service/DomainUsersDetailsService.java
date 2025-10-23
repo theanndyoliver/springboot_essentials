@@ -22,4 +22,6 @@ public class DomainUsersDetailsService implements UserDetailsService {
         return Optional.ofNullable(domainUsersRepository.findByUsername(username))
                 .orElseThrow(() -> new UsernameNotFoundException("DomainUsers name not found!"));
     }
+
+
 }
